@@ -32,62 +32,62 @@ namespace SecretHistories.Entities
         /// Title that displays at game end
         /// </summary>
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         /// <summary>
         /// For legacies that we want to group together, like the various Exile starts
         /// </summary>
         [FucineValue(DefaultValue = "")]
-        public string Family { get; set; }
+        public virtual string Family { get; set; }
 
         
         /// <summary>
         /// Detail that displays at game end
         /// </summary>
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         /// <summary>
         /// Displays after game start
         /// </summary>
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string StartDescription { get; set; }
+        public virtual string StartDescription { get; set; }
 
-        [FucineValue("")] public string Image { get; set; }
+        [FucineValue("")] public virtual string Image { get; set; }
 
-        [FucineValue("")] public string TableCoverImage { get; set; }
+        [FucineValue("")] public virtual string TableCoverImage { get; set; }
 
-        [FucineValue("")] public string TableSurfaceImage { get; set; }
+        [FucineValue("")] public virtual string TableSurfaceImage { get; set; }
 
-        [FucineValue("")] public string TableEdgeImage { get; set; }
+        [FucineValue("")] public virtual string TableEdgeImage { get; set; }
 
-        [FucineValue("")] public string FromEnding { get; set; }
+        [FucineValue("")] public virtual string FromEnding { get; set; }
 
-        [FucineValue(false)] public bool AvailableWithoutEndingMatch { get; set; }
+        [FucineValue(false)] public virtual bool AvailableWithoutEndingMatch { get; set; }
 
 
         /// <summary>
         /// If true, this legacy will appear as an optional start in the DLC menu
         /// </summary>
-        [FucineValue(false)] public bool NewStart { get; set; }
+        [FucineValue(false)] public virtual bool NewStart { get; set; }
 
         /// <summary>
         /// These are just applied to the default sphere when the game begins
         /// </summary>
         [FucineAspects(ValidateAsElementId = true)]
-        public AspectsDictionary Effects { get; set; }
+        public virtual AspectsDictionary Effects { get; set; }
 
         /// <summary>
         /// ///These recipes execute when the game begins. An AtPath should be specified - otherwise just use effects.
         /// </summary>
         [FucineList]
-        public List<LinkedRecipeDetails> Startup { get; set; }
+        public virtual List<LinkedRecipeDetails> Startup { get; set; }
 
-        [FucineList] public List<string> ExcludesOnEnding { get; set; }
+        [FucineList] public virtual List<string> ExcludesOnEnding { get; set; }
 
-        [FucineList] public List<string> StatusBarElements { get; set; }
+        [FucineList] public virtual List<string> StatusBarElements { get; set; }
 
-        [FucineValue(".")] public string StartingVerbId { get; set; }
+        [FucineValue(".")] public virtual string StartingVerbId { get; set; }
 
 
         public AbstractTokenSetupChamberlain GetTokenSetupChamberlain(GameId gameId)

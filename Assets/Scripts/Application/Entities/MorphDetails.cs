@@ -18,13 +18,13 @@ namespace SecretHistories.Entities
 
 
         [FucineValue(100)]
-        public int Chance { get; private set; }
+        public virtual int Chance { get; private set; }
 
         [FucineValue(1)]
-        public int Level { get; private set; }
+        public virtual int Level { get; private set; }
 
         [FucineValue((int)MorphEffectType.Transform)]
-        public MorphEffectType MorphEffect { get; private set; }
+        public virtual MorphEffectType MorphEffect { get; private set; }
 
         public MorphDetails(EntityData importDataForEntity, ContentImportLog log) : base(importDataForEntity, log)
         { }
@@ -47,7 +47,7 @@ namespace SecretHistories.Entities
 
         }
 
-        public void QuickSpec(string value)
+        public virtual void QuickSpec(string value)
         {
             _id = value;
             Chance = 100;

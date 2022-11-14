@@ -42,20 +42,20 @@ public class Character:MonoBehaviour,IEncaustable
     private string _profession;
     
 
-    [Encaust] public string ActiveLegacyId => ActiveLegacy.Id;
-    [Encaust] public string EndingTriggeredId => EndingTriggered.Id;
+    [Encaust] public virtual string ActiveLegacyId => ActiveLegacy.Id;
+    [Encaust] public virtual string EndingTriggeredId => EndingTriggered.Id;
 
         [DontEncaust]
-        public Legacy ActiveLegacy { get; set; }
+        public virtual Legacy ActiveLegacy { get; set; }
         [DontEncaust]
-        public Ending EndingTriggered { get; set; }
+        public virtual Ending EndingTriggered { get; set; }
 
         [Encaust]
-        public DateTime DateTimeCreated => _dateTimeCreated;
+        public virtual DateTime DateTimeCreated => _dateTimeCreated;
 
 
         [Encaust]
-    public string Name
+    public virtual string Name
     {
         get { return _name; }
         set
@@ -72,7 +72,7 @@ public class Character:MonoBehaviour,IEncaustable
     }
 
     [Encaust]
-    public string Profession
+    public virtual string Profession
     {
         get => _profession;
         set
@@ -86,17 +86,17 @@ public class Character:MonoBehaviour,IEncaustable
         }
     }
     [Encaust]
-    public Dictionary<string, int> RecipeExecutions => new Dictionary<string, int>(_recipeExecutions);
+    public virtual Dictionary<string, int> RecipeExecutions => new Dictionary<string, int>(_recipeExecutions);
 
     [Encaust]
-    public Dictionary<string, string> InProgressHistoryRecords=>new Dictionary<string, string>(_inProgressHistoryRecords);
+    public virtual Dictionary<string, string> InProgressHistoryRecords=>new Dictionary<string, string>(_inProgressHistoryRecords);
     
     [Encaust]
-    public Dictionary<string, string> PreviousCharacterHistoryRecords=> new Dictionary<string, string>(_previousCharacterHistoryRecords);
+    public virtual Dictionary<string, string> PreviousCharacterHistoryRecords=> new Dictionary<string, string>(_previousCharacterHistoryRecords);
 
 
     [DontEncaust]
-    public CharacterState State
+    public virtual CharacterState State
     {
         get
         {
@@ -110,7 +110,7 @@ public class Character:MonoBehaviour,IEncaustable
     }
 
 
-    public void EnactEnding(Ending endingToEnact)
+    public virtual void EnactEnding(Ending endingToEnact)
     {
         //if we need logic for the ending to make changes to the character, here would be a good place.
         EndingTriggered = endingToEnact;
@@ -126,22 +126,22 @@ public class Character:MonoBehaviour,IEncaustable
     private Dictionary<string, string> _previousCharacterHistoryRecords=new Dictionary<string, string>();
     private DateTime _dateTimeCreated;
 
-    public void Subscribe(ICharacterSubscriber subscriber)
+    public virtual void Subscribe(ICharacterSubscriber subscriber)
     {
         _subscribers.Add(subscriber);
     }
 
-    public void Unsubscribe(ICharacterSubscriber subscriber)
+    public virtual void Unsubscribe(ICharacterSubscriber subscriber)
     {
         _subscribers.Remove(subscriber);
     }
 
-    public void OnDestroy()
+    public virtual void OnDestroy()
     {
         _subscribers.Clear();
     }
 
-    public void SetCreatedAtTime(DateTime createdAtTime)
+    public virtual void SetCreatedAtTime(DateTime createdAtTime)
     {
         _dateTimeCreated = createdAtTime;
     }

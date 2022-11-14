@@ -12,23 +12,23 @@ namespace SecretHistories.Entities
     public class Culture : AbstractEntity<Culture>
     {
         [FucineValue]
-        public string Endonym { get; set; }
+        public virtual string Endonym { get; set; }
 
         [FucineValue]
-        public string Exonym { get; set; }
+        public virtual string Exonym { get; set; }
 
         [FucineValue(DefaultValue = "x")]
-        public string FontScript { get; set; }
+        public virtual string FontScript { get; set; }
 
         [FucineValue]
-        public bool BoldAllowed { get; set; }
+        public virtual bool BoldAllowed { get; set; }
 
         [FucineValue(DefaultValue = false)]
-        public bool Released { get; set; }
+        public virtual bool Released { get; set; }
 
 
         [FucineDict]
-        public Dictionary<string,string> UILabels { get; set; }
+        public virtual Dictionary<string,string> UILabels { get; set; }
 
 
 

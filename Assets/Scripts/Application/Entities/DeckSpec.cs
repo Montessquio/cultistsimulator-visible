@@ -17,53 +17,53 @@ namespace SecretHistories.Entities
     {
 
         [FucineValue("")]
-        public string DefaultCard { get; set; }
+        public virtual string DefaultCard { get; set; }
 
         [FucineValue(false)]
-        public bool ResetOnExhaustion { get; set; }
+        public virtual bool ResetOnExhaustion { get; set; }
 
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         [FucineValue(DefaultValue = "books")]
-        public string Cover { get; set; }
+        public virtual string Cover { get; set; }
 
         [FucineValue("")]
-      public string Comments { get; set; }
+        public virtual string Comments { get; set; }
 
 
       /// <summary>
       /// if set, only appears when the character begins with that legacy
       /// </summary>
-      [FucineValue("")] public string ForLegacyFamily { get; set; }
+      [FucineValue("")] public virtual string ForLegacyFamily { get; set; }
 
         /// <summary>
         /// This is used for internal decks only - default is 1. It allows us to specify >1 draw for an internal deck's default deckeffect.
         /// </summary>
         [FucineValue(1)]
-        public int Draws { get; set; }
+        public virtual int Draws { get; set; }
 
 
         //DeckSpec determines which cards start in the deckSpec after each reset
         [FucineList(ValidateAsElementId = true)]
-        public List<string> Spec
+        public virtual List<string> Spec
         {
             get => _spec;
             set => _spec = value;
         }
 
         [FucineDict(KeyMustExistIn = "DeckSpec",Localise=true)]
-        public Dictionary<string, string> DrawMessages
+        public virtual Dictionary<string, string> DrawMessages
         {
             get => _drawMessages;
             set => _drawMessages = value;
         }
 
         [FucineDict]
-        public Dictionary<string, string> DefaultDrawMessages
+        public virtual Dictionary<string, string> DefaultDrawMessages
         {
             get => _defaultDrawMessages;
             set => _defaultDrawMessages = value;
@@ -71,10 +71,10 @@ namespace SecretHistories.Entities
 
 
         //----------
-        private List<string> _spec = new List<string>();
-        private readonly Dictionary<string, List<string>> _uniquenessGroupsWithCards = new Dictionary<string, List<string>>();
-        private Dictionary<string, string> _defaultDrawMessages = new Dictionary<string, string>();
-        private Dictionary<string, string> _drawMessages = new Dictionary<string, string>();
+        protected List<string> _spec = new List<string>();
+        protected readonly Dictionary<string, List<string>> _uniquenessGroupsWithCards = new Dictionary<string, List<string>>();
+        protected Dictionary<string, string> _defaultDrawMessages = new Dictionary<string, string>();
+        protected Dictionary<string, string> _drawMessages = new Dictionary<string, string>();
       
 
         public DeckSpec(EntityData importDataForEntity, ContentImportLog log) : base(importDataForEntity, log)
@@ -87,7 +87,7 @@ namespace SecretHistories.Entities
         }
 
 
-        public void RegisterUniquenessGroups(Compendium compendium)
+        public virtual void RegisterUniquenessGroups(Compendium compendium)
         {
             if(!Spec.Any())
                 throw new NotImplementedException("We're trying to register uniqueness groups for a DeckSpec before populating it with cards.");
@@ -114,7 +114,7 @@ namespace SecretHistories.Entities
             }
         }
 
-        public List<string> CardsInUniquenessGroup(string uniquenessGroupId)
+        public virtual List<string> CardsInUniquenessGroup(string uniquenessGroupId)
         {
             if (_uniquenessGroupsWithCards.ContainsKey(uniquenessGroupId))
 

@@ -18,39 +18,39 @@ namespace SecretHistories.Entities
         public override string Id => _id;
 
         [FucineValue(DefaultValue = ".", Localise = true)]
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         [FucineValue(DefaultValue = ".", Localise = true)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         [FucineValue]
-        public string Icon { get; set; }
+        public virtual string Icon { get; set; }
 
         /// <summary>
         /// This doesn't do anything at the moment; but we should support it for teh legacy
         /// </summary>
         [FucineValue(DefaultValue = true)]
-        public bool Controllable { get; set; }
+        public virtual bool Controllable { get; set; }
 
         [FucineValue(DefaultValue=VerbCategory.Shabda)]
-        public VerbCategory Category { get; set; }
+        public virtual VerbCategory Category { get; set; }
 
-        public bool Spontaneous { get; set; }
+        public virtual bool Spontaneous { get; set; }
 
 #pragma warning disable 67
         public event Action<TokenPayloadChangedArgs> OnChanged;
         public event Action<float> OnLifetimeSpent;
 #pragma warning restore 67
         [Encaust]
-        public int Quantity => 1;
+        public virtual int Quantity => 1;
         [Encaust]
-        public Dictionary<string, int> Mutations { get; }
-        public List<SphereSpec> Thresholds { get; set; } = new List<SphereSpec>();
+        public virtual Dictionary<string, int> Mutations { get; }
+        public virtual List<SphereSpec> Thresholds { get; set; } = new List<SphereSpec>();
         [FucineSubEntity(typeof(SphereSpec),Localise = true)]
-        public SphereSpec Slot { get; set; }
+        public virtual SphereSpec Slot { get; set; }
 
         [FucineList(Localise = true)]
-        public List<SphereSpec> Slots { get; set; }
+        public virtual List<SphereSpec> Slots { get; set; }
 
         public virtual bool IsValid()
         {
@@ -74,7 +74,7 @@ namespace SecretHistories.Entities
 
 
 
-        public string DefaultUniqueTokenId()
+        public virtual string DefaultUniqueTokenId()
         {
             int identity = FucineRoot.Get().IncrementedIdentity();
             return $"!{Id}_{identity}";

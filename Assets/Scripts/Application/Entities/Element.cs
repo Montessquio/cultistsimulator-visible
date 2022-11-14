@@ -17,16 +17,16 @@ namespace SecretHistories.Entities
     {
 
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Description { get; set;}
+        public virtual string Description { get; set;}
 
         [FucineValue("")]
-        public string Comments { get; set; }
+        public virtual string Comments { get; set; }
 
         [FucineValue("")]
-        public string Icon
+        public virtual string Icon
         {
             get
             {
@@ -38,40 +38,40 @@ namespace SecretHistories.Entities
         }
 
         [FucineValue("")]
-        public string VerbIcon { get; set; }
+        public virtual string VerbIcon { get; set; }
 
         [FucineValue("")]
-        public string DecayTo { get; set; }
-
-
-        [FucineValue("")]
-        public string BurnTo { get; set; }
-
-        [FucineValue("")]
-        public string DrownTo { get; set; }
+        public virtual string DecayTo { get; set; }
 
 
         [FucineValue("")]
-        public string UniquenessGroup { get; set; }
+        public virtual string BurnTo { get; set; }
+
+        [FucineValue("")]
+        public virtual string DrownTo { get; set; }
+
+
+        [FucineValue("")]
+        public virtual string UniquenessGroup { get; set; }
 
         //if true, when the card decays it should become more, rather than less saturated with colour (eg Fatigue->Health)
         [FucineValue(false)]
-        public bool Resaturate { get; set; }
+        public virtual bool Resaturate { get; set; }
 
         [FucineValue(false)]
-        public bool IsAspect { get; set; }
+        public virtual bool IsAspect { get; set; }
 
         [FucineValue(false)]
-        public bool IsHidden { get; set; } //use with caution! this is intended specifically for uniqueness group aspects. It will only work on aspect displays, anyhow
+        public virtual bool IsHidden { get; set; } //use with caution! this is intended specifically for uniqueness group aspects. It will only work on aspect displays, anyhow
 
         [FucineValue(false)]
-        public bool NoArtNeeded { get; set; }
+        public virtual bool NoArtNeeded { get; set; }
 
         [FucineValue(false)]
-        public bool Metafictional { get; set; }
+        public virtual bool Metafictional { get; set; }
 
         [FucineValue("Card")]
-        public string ManifestationType { get; set; }
+        public virtual string ManifestationType { get; set; }
 
 
 
@@ -80,26 +80,26 @@ namespace SecretHistories.Entities
         /// [Note: if a deck resets on exhaustion, the rest will add a new element. So ideally, whenever a card is drawn from a deck, it should be checked for existing uniqueness. Chris' Mansus-management deck is a good place to enforce this if it doesn't already do it..]
         /// </summary>
         [FucineValue(false)]
-        public bool Unique { get; set; }
+        public virtual bool Unique { get; set; }
 
         [FucineValue(0)]
-        public float Lifetime { get; set; }
+        public virtual float Lifetime { get; set; }
 
         [FucineValue("")]
-        public string Inherits { get; set; }
+        public virtual string Inherits { get; set; }
 
         [FucineAspects(ValidateAsElementId = true)]
-        public AspectsDictionary Aspects { get; set; }
+        public virtual AspectsDictionary Aspects { get; set; }
 
         [FucineList(Localise = true)]
-        public List<SphereSpec> Slots { get; set; }
+        public virtual List<SphereSpec> Slots { get; set; }
 
         /// <summary>
         /// Inductions ONLY OCCUR WHEN A RECIPE COMPLETES. This ensures we don't get inductions spamming over and over.
         /// Note: the 'additional' value here currently does nothing, but we might later use it to determine whether quantity of an aspect increases chance of induction
         /// </summary>
         [FucineList]
-        public List<LinkedRecipeDetails> Induces { get; set; }
+        public virtual List<LinkedRecipeDetails> Induces { get; set; }
 
         /// <summary>
         /// XTriggers allow the triggering aspect to transform the element into something else. For example, if the Knock aspect were present, and the element was a locked_box with Knock:open_box,
@@ -107,9 +107,9 @@ namespace SecretHistories.Entities
         /// XTriggers run *before* the rest of the recipe (so if the recipe affected open_box elements but not locked_box elements, those effects would take place if there was a Knock in the mix).
         /// </summary>
         [FucineDict]
-        public Dictionary<string, List<MorphDetails>> XTriggers { get; set; }
+        public virtual Dictionary<string, List<MorphDetails>> XTriggers { get; set; }
 
-        private string _icon;
+        protected string _icon;
 
 
 

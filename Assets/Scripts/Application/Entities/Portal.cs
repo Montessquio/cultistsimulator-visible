@@ -14,10 +14,10 @@ namespace SecretHistories.Entities
     public class Portal: AbstractEntity<Portal>
     {
         [FucineValue(DefaultValue = ".", Localise = true)]
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         [FucineValue(DefaultValue = ".", Localise = true)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         [FucineValue(DefaultValue = ".", Localise = true)]
         public virtual string Icon { get; set; }

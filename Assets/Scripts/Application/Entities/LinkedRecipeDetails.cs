@@ -12,25 +12,25 @@ namespace SecretHistories.Entities
 
 
         [FucineValue(100)]
-        public int Chance { get; set; }
+        public virtual int Chance { get; set; }
 
         [FucineValue(false)]
-        public bool Additional { get; set; }
+        public virtual bool Additional { get; set; }
 
         [FucinePathValue("")]
-        public FucinePath ToPath { get; set; }
+        public virtual FucinePath ToPath { get; set; }
 
         /// <summary>
         /// Specify a challenge based on aspect quality, as either base or advanced. If there's more than one challenge,
         /// the most generous % chance will be used.
         /// </summary>
         [FucineDict]
-        public Dictionary<string, string> Challenges { get; set; }
+        public virtual Dictionary<string, string> Challenges { get; set; }
 
         [FucineSubEntity(typeof(Expulsion))]
-        public Expulsion Expulsion { get; set; }
+        public virtual Expulsion Expulsion { get; set; }
 
-        public bool ShouldAlwaysSucceed()
+        public virtual bool ShouldAlwaysSucceed()
         {
             return Chance >= 100 && Challenges.Count <= 0;
         }

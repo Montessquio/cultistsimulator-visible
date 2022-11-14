@@ -18,30 +18,31 @@ namespace SecretHistories.Entities
         Pale=3,
         Vile=4
     }
+
     [FucineImportable("endings")]
     public class Ending: AbstractEntity<Ending>
     {
 
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         [FucineValue(DefaultValue = "", Localise = true)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         [FucineValue("")]
-        public string Comments { get; set; }
+        public virtual string Comments { get; set; }
 
         [FucineValue("")]
-        public string Image { get; set; }
+        public virtual string Image { get; set; }
 
         [FucineValue((int)EndingFlavour.Melancholy)]
-        public EndingFlavour Flavour { get; set; }
+        public virtual EndingFlavour Flavour { get; set; }
 
         [FucineValue("")]
-        public string Anim { get; set; }
+        public virtual string Anim { get; set; }
 
         [FucineValue("")]
-        public string Achievement { get; set; }
+        public virtual string Achievement { get; set; }
 
         public virtual bool IsValid()
         {

@@ -13,16 +13,16 @@ namespace SecretHistories.Entities
     {
 
         [FucineValue("")]
-        public string Filter { get; set; }
+        public virtual string Filter { get; set; }
 
         [FucineValue(ValidateAsElementId=true,DefaultValue="")]
-        public string Mutate { get; set; }
+        public virtual string Mutate { get; set; }
 
         [FucineValue(0)]
-        public int Level { get; set; }
+        public virtual int Level { get; set; }
 
         [FucineValue(false)]
-        public bool Additive { get; set; }
+        public virtual bool Additive { get; set; }
 
         public MutationEffect(EntityData importDataForEntity, ContentImportLog log) : base(importDataForEntity, log)
         {

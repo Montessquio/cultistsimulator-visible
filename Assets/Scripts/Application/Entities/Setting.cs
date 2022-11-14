@@ -17,44 +17,44 @@ namespace SecretHistories.Entities
         { 
         
             [FucineValue]
-        public string TabId { get; set; }
+        public virtual string TabId { get; set; }
 
         [FucineValue]
-        public string Hint { get; set; }
+        public virtual string Hint { get; set; }
 
         [FucineValue]
-        public string HintLocId { get; set; }
+        public virtual string HintLocId { get; set; }
 
         [FucineValue(DefaultValue = 0)]
-        public int MinValue { get; set; }
+        public virtual int MinValue { get; set; }
             
         [FucineValue(DefaultValue=1)]
-        public int MaxValue { get; set; }
+        public virtual int MaxValue { get; set; }
 
         [FucineValue]
-        public string DefaultValue { get; set; }
+        public virtual string DefaultValue { get; set; }
 
         [FucineValue]
-        public string DataType { get; set; }
+        public virtual string DataType { get; set; }
 
 
         [FucineDict]
-        public Dictionary<string,string> ValueLabels { get; set; }
+        public virtual Dictionary<string,string> ValueLabels { get; set; }
 
         //same thing as ValueLabels, but for logic, not UI purposes
         //the inner label of the current value is retrieved via GetInnerLabelForValue()
         [FucineDict]
-        public Dictionary<string, string> ValueInnerLabels { get; set; }
+        public virtual Dictionary<string, string> ValueInnerLabels { get; set; }
         //ie. something like { "id": "CURRENT GAME", "valueInnerLabels": { "0": "cs", "1": "bh" } }
 
         [FucineValue]
-        public string TargetConfigArray { get; set; }
+        public virtual string TargetConfigArray { get; set; }
 
         private readonly HashSet<ISettingSubscriber> _subscribers = new HashSet<ISettingSubscriber>();
 
 
         private object _currentValue;
-        public object CurrentValue
+        public virtual object CurrentValue
         {
             get
             {
@@ -82,7 +82,7 @@ namespace SecretHistories.Entities
             }
         }
 
-        public string GetInnerLabelForValue(object value)
+        public virtual string GetInnerLabelForValue(object value)
         {
             string valueString = value.ToString();
             if (ValueInnerLabels.ContainsKey(valueString))
@@ -90,7 +90,7 @@ namespace SecretHistories.Entities
             else
                 return valueString;
         }
-        public string GetCurrentValueAsHumanReadableString()
+        public virtual string GetCurrentValueAsHumanReadableString()
         {
             //currently, this caters only for key bindings.
             string currentString = CurrentValue.ToString();
@@ -113,7 +113,7 @@ namespace SecretHistories.Entities
                 LinkToConfig();
         }
 
-        private void LinkToConfig()
+        protected virtual void LinkToConfig()
         {
             //if a value for this Setting has been stored in config, set the value accordingly
             //otherwise, set it to the default value

@@ -18,60 +18,60 @@ public class SphereSpec: AbstractEntity<SphereSpec>
 {
 
     [FucineValue(DefaultValue = "", Localise = true)]
-    public string Label { get; set; }
+    public virtual string Label { get; set; }
 
     [FucineValue("")]
-    public string ActionId { get; set; }
+    public virtual string ActionId { get; set; }
 
     /// <summary>
     /// currently, this is only used by the primary slot specification
     /// </summary>
     [FucineValue(DefaultValue = "", Localise = true)]
-    public string Description { get; set; }
+    public virtual string Description { get; set; }
     /// <summary>
     /// The element in this slot must possess at least one of these aspects
     /// </summary>
     [FucineAspects(ValidateAsElementId = true)]
-    public AspectsDictionary Required { get; set; }
+    public virtual AspectsDictionary Required { get; set; }
     /// <summary>
     /// The element in this slot cannot possess any of these aspects
     /// </summary>
     [FucineAspects(ValidateAsElementId = true)]
-    public AspectsDictionary Forbidden { get; set; }
+    public virtual AspectsDictionary Forbidden { get; set; }
 
     /// <summary>
     /// A Greedy slot will find a card on the desktop that matches its specification, and insert it.
     /// </summary>
     [FucineValue(false)]
-    public bool Greedy { get; set; }
+    public virtual bool Greedy { get; set; }
     /// <summary>
     /// A Consuming slot will destroy its contents when a recipe begins
     /// </summary>
     [FucineValue(false)]
-    public bool Consumes { get; set; }
+    public virtual bool Consumes { get; set; }
 
     [FucineList]
-   public List<AngelSpecification> Angels { get; set; }
+   public virtual List<AngelSpecification> Angels { get; set; }
 
         
-   public FucinePath EnRouteSpherePath { get; set; }
+   public virtual FucinePath EnRouteSpherePath { get; set; }
 
-   public FucinePath WindowsSpherePath { get; set; }
+   public virtual FucinePath WindowsSpherePath { get; set; }
 
 
-   public Type SphereType { get; set; }
+   public virtual Type SphereType { get; set; }
 
-   public bool AllowAnyToken { get; set; }
+   public virtual bool AllowAnyToken { get; set; }
 
     private readonly HashSet<StateEnum> _activeInStates=new HashSet<StateEnum>();
 
-    public bool IsActiveInState(StateEnum state)
+    public virtual bool IsActiveInState(StateEnum state)
     {
         return (_activeInStates.Contains(state));
     }
 
 
-    public void MakeActiveInState(StateEnum state)
+    public virtual void MakeActiveInState(StateEnum state)
     {
         _activeInStates.Add(state);
     }
